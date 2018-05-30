@@ -79,7 +79,7 @@ def box_plost(minimum, maximum, average, names, title='Boxes plots', save_name='
     pos = np.arange(len(names)) + 1
     upperLabels = [str((int(np.round(minimum[s])), int(np.round(average[s])), int(np.round(maximum[s]))))
                    for s in range(len(minimum))]
-    down = 20
+    down = 50
     for tick, label in zip(range(len(names)), axs.get_xticklabels()):
         axs.text(pos[tick], down + down*0.05, upperLabels[tick],
                  horizontalalignment='center', size='x-small', weight='bold',
