@@ -61,3 +61,42 @@ def plot_history(history, save_plot=True):
     # plt.show()
     print("Figure saved")
     plt.close(figure)
+
+
+def box_plost(minimum, maximum, average, names, title='Boxes plots', save_name='box_plot'):
+    data = []
+    for i in range(len(minimum)):
+        data.append(np.concatenate(([minimum[i]], [maximum[i]], [average[i]]), 0))
+
+    fig, axs = plt.subplots()
+
+    # # basic plot
+    boxprops = {'color': 'darkorange', 'linestyle': '-', 'linewidth': 0.7}
+    medianprops = {'color': 'darkred', 'linestyle': '-', 'linewidth': 0.7}
+    capprops = {'color': 'darkred', 'linestyle': '-', 'linewidth': 0.6}
+    axs.boxplot(data, boxprops=boxprops, medianprops=medianprops, capprops=capprops)
+
+    pos = np.arange(len(names)) + 1
+    upperLabels = [str((int(np.round(minimum[s])), int(np.round(average[s])), int(np.round(maximum[s]))))
+                   for s in range(len(minimum))]
+    down = 20
+    for tick, label in zip(range(len(names)), axs.get_xticklabels()):
+        axs.text(pos[tick], down + down*0.05, upperLabels[tick],
+                 horizontalalignment='center', size='x-small', weight='bold',
+                 color='darkred')
+
+    axs.set_title(title)
+    axs.set_ylim(down, 100)
+    axs.set_xticklabels(names, rotation=15, fontsize=8)
+
+    fig.savefig(save_name)
+    plt.close(fig)
+
+
+if __name__ == '__main__':
+    names = ['spec_train', 'spec_test', 'rp_spec_train', 'rp_spec_val']
+    minim = [73.6842107504, 66.6666686535, 91.729323129, 78.9473681073]
+    maxim = [96.2406017278, 91.2280706983, 100, 98.2456150808]
+    avers = [86.1904756691, 77.8947370094, 98.092, 92.2753333]
+
+    box_plost(minim, maxim, avers, names, title='Bats spectrogram accuracy plots', save_name='accuracy_spectrogram_plot')
