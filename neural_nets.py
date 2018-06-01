@@ -1,4 +1,5 @@
 # import the necessary packages
+from keras.utils import plot_model
 from keras.models import Sequential, Model
 from keras.layers.convolutional import Conv2D, Conv1D
 from keras.layers.convolutional import MaxPooling2D, MaxPooling1D, AveragePooling1D, AveragePooling2D
@@ -238,3 +239,8 @@ class Autoencoder:
         model.add(Dense(input_dim[-1]))
 
         return model
+
+
+if __name__ == '__main__':
+	model = LeNet.build((28, 28, 2), 19)
+	plot_model(model, to_file='Conv2D.png')

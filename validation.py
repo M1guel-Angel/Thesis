@@ -99,4 +99,4 @@ if __name__ == '__main__':
     maxim = [96.2406017278, 91.2280706983, 100, 98.2456150808]
     avers = [86.1904756691, 77.8947370094, 98.092, 92.2753333]
 
-    box_plost(minim, maxim, avers, names, title='Bats spectrogram accuracy plots', save_name='accuracy_spectrogram_plot')
+    box_plost(minim, maxim, avers, names, title='Precisión con el uso de espectrogramas', save_name='accuracy_spectrogram_plot')
